@@ -54,7 +54,7 @@ export const CreateChannelModal = () => {
 
   const isModalOpen = isOpen && type === "createChannel";
 
- 
+
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -70,7 +70,7 @@ export const CreateChannelModal = () => {
       const url = qs.stringifyUrl({
         url: "/api/channels",
         query: {
-          serverId: params?.serverId
+          serversId: params?.serversId
         }
       });
       await axios.post(url, values);
