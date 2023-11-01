@@ -1,0 +1,58 @@
+class BankOperations:
+    def init(self):
+        self.balance = 0
+        self.keywords = {
+            "see": "show balance",
+            "show": "show balance",
+            "deposit": "deposit funds",
+            "put": "deposit funds",
+            "invest": "deposit funds",
+            "transfer": "deposit funds",
+            "withdraw": "withdraw funds",
+            "pull": "withdraw funds",
+        }
+
+    def deposit(self, amount):
+        self.balance += amount
+
+    def withdraw(self, amount):
+        if self.balance >= amount:
+            self.balance -= amount
+
+    def process_operation(self, message):
+        words = message.split()
+        action = ""
+        amount = 0
+
+        # Find the action and amount based on user message
+        for word in words:
+            if word in self.keywords:
+                action = self.keywords[word]
+            elif word.replace(".", "", 1).isdigit():
+                amount = float(word)
+
+        # Perform the action
+        if action == "show balance":
+            return self.balance
+        elif action == "deposit funds":
+            self.deposit(amount)
+        elif action == "withdraw funds":
+            if self.balance >= amount:
+                self.withdraw(amount)
+
+        return self.balance
+
+# Example usage
+bank = BankOperations()
+customer_requests = [
+    "I want to see my balance",
+    "I want to withdraw 200",
+    "I want to deposit 500",
+    "I want to invest 600",
+    "I want to transfer 100 to my account",
+]
+
+for request in customer_requests:
+    new_balance = bank.process_operation(request)
+    print("Request:", request)
+    print("New Balance:", new_balance)
