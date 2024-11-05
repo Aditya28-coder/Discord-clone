@@ -1,31 +1,31 @@
-"use client"
+"use client";
 
-import Image from "next/image"
-import { useParams, useRouter } from "next/navigation"
+import Image from "next/image";
+import { useParams, useRouter } from "next/navigation";
 
-import { cn } from "@/lib/utils"
-import { ActionTooltip } from "@/components/action-tooltip"
+import { cn } from "@/lib/utils";
+import { ActionTooltip } from "@/components/action-tooltip";
 
 interface NavigationItemProps {
-    id: string
-    imageUrl: string
-    name: string
-}
+  id: string;
+  imageUrl: string;
+  name: string;
+};
 
 export const NavigationItem = ({
-    id,
-    imageUrl,
-    name
-} : NavigationItemProps ) => {
-    const params = useParams();
-    const router = useRouter();
+  id,
+  imageUrl,
+  name
+}: NavigationItemProps) => {
+  const params = useParams();
+  const router = useRouter();
 
-    const onClick = () => {
-        router.push(`/servers/${id}`)
-    }
+  const onClick = () => {
+    router.push(`/servers/${id}`);
+  }
 
-    return (
-        <ActionTooltip
+  return (
+    <ActionTooltip
       side="right"
       align="center"
       label={name}
@@ -51,5 +51,5 @@ export const NavigationItem = ({
         </div>
       </button>
     </ActionTooltip>
-    )
+  )
 }
